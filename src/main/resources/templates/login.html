@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <title>Area</title>
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="/css/login/style.css" />
+  
+</head>
+
+<body>
+  <div class="form">
+      
+      <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Créer un compte</a></li>
+        <li class="tab"><a href="#login">Se connecter</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="signup">
+          <h1>Créer un compte gratuitement</h1>
+          <div th:if="${param.error}" class="alert alert-error">
+            <h2 style="color: red; text-align: center">Adresse mail ou mot de passe invalide</h2>
+          </div>
+          <div th:if="${param.logout}" class="alert alert-success">
+            <h1>You have been logged out.</h1>
+          </div>
+          <form action="/register" method="post">
+          
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                Prénom<span class="req">*</span>
+              </label>
+              <input type="text" required="required" autocomplete="off" name="FirstName" id="FirstName"/>
+            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Nom<span class="req">*</span>
+              </label>
+              <input type="text" required="required" autocomplete="off" name="LastName" id="LastName"/>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Adresse mail<span class="req">*</span>
+            </label>
+            <input type="email" required="required" autocomplete="off" name="email" id="email"/>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Mot de passe<span class="req">*</span>
+            </label>
+            <input type="password" required="required" autocomplete="off" name="passwd" id="passwd"/>
+          </div>
+
+            <input type="submit" class="button button-block"/>
+          
+          </form>
+
+        </div>
+        
+        <div id="login">   
+          <h1>Connectez-vous !</h1>
+
+          <form name="f" th:action="@{/login}" method="post">
+            <div class="field-wrap">
+            <label>
+              Adresse mail<span class="req">*</span>
+            </label>
+            <input type="email" required="required" autocomplete="off" name="email" />
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Mot de passe<span class="req">*</span>
+            </label>
+            <input type="password" required="required" autocomplete="off" name="password" />
+          </div>
+          
+          <input type="submit" class="button button-block"/>
+          </form>
+
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div>
+  <!-- /form -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script  src="/js/login/index.js"></script>
+</body>
+</html>
